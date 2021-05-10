@@ -1,0 +1,1014 @@
+#!MC 1410
+$!VarSet |LFDSFN1| = '"EnKF.dat" "ES.dat" "EnKS.dat" "EnKSL.dat"'
+$!VarSet |LFDSVL1| = '"time" "Ref x" "Ref y" "Ref z" "Ave x" "Ave y" "Ave z" "Var x" "Var y" "Var z" "Err x" "Err y" "Err z"'
+$!SetStyleBase Factory
+$!BasicColor 
+  Custom1
+    {
+    R = 119
+    G = 119
+    B = 119
+    }
+  Custom2
+    {
+    R = 77
+    G = 175
+    B = 74
+    }
+  Custom3
+    {
+    R = 254
+    G = 229
+    B = 217
+    }
+  Custom4
+    {
+    R = 255
+    B = 212
+    }
+  Custom5
+    {
+    R = 237
+    G = 248
+    B = 233
+    }
+  Custom6
+    {
+    R = 240
+    G = 249
+    B = 232
+    }
+  Custom7
+    {
+    R = 239
+    G = 243
+    }
+  Custom8
+    {
+    R = 242
+    G = 240
+    B = 247
+    }
+  Custom9
+    {
+    R = 102
+    G = 102
+    B = 102
+    }
+  Custom10
+    {
+    R = 152
+    G = 67
+    B = 163
+    }
+  Custom11
+    {
+    R = 252
+    G = 187
+    B = 161
+    }
+  Custom12
+    {
+    R = 254
+    G = 227
+    B = 145
+    }
+  Custom13
+    {
+    R = 199
+    G = 233
+    B = 192
+    }
+  Custom14
+    {
+    R = 204
+    G = 235
+    B = 197
+    }
+  Custom15
+    {
+    R = 198
+    G = 219
+    B = 239
+    }
+  Custom16
+    {
+    R = 218
+    G = 218
+    B = 235
+    }
+  Custom17
+    {
+    B = 85
+    }
+  Custom18
+    {
+    G = 165
+    B = 0
+    }
+  Custom19
+    {
+    R = 252
+    G = 146
+    B = 114
+    }
+  Custom20
+    {
+    R = 254
+    G = 196
+    B = 79
+    }
+  Custom21
+    {
+    R = 161
+    G = 217
+    B = 155
+    }
+  Custom22
+    {
+    R = 168
+    G = 221
+    B = 181
+    }
+  Custom23
+    {
+    R = 158
+    G = 202
+    B = 225
+    }
+  Custom24
+    {
+    R = 188
+    G = 189
+    B = 220
+    }
+  Custom25
+    {
+    R = 27
+    G = 158
+    B = 119
+    }
+  Custom26
+    {
+    R = 217
+    G = 95
+    B = 2
+    }
+  Custom27
+    {
+    R = 117
+    G = 112
+    B = 179
+    }
+  Custom28
+    {
+    R = 231
+    G = 41
+    B = 138
+    }
+  Custom29
+    {
+    R = 102
+    G = 166
+    B = 30
+    }
+  Custom30
+    {
+    R = 230
+    G = 171
+    B = 2
+    }
+  Custom31
+    {
+    R = 166
+    G = 118
+    B = 29
+    }
+  Custom32
+    {
+    R = 102
+    G = 102
+    B = 102
+    }
+  Custom33
+    {
+    R = 102
+    G = 194
+    B = 165
+    }
+  Custom34
+    {
+    R = 252
+    G = 141
+    B = 98
+    }
+  Custom35
+    {
+    R = 141
+    G = 160
+    B = 203
+    }
+  Custom36
+    {
+    R = 231
+    G = 138
+    B = 195
+    }
+  Custom37
+    {
+    R = 166
+    G = 216
+    B = 84
+    }
+  Custom38
+    {
+    R = 255
+    G = 217
+    B = 48
+    }
+  Custom39
+    {
+    R = 229
+    G = 196
+    B = 148
+    }
+  Custom40
+    {
+    R = 179
+    G = 179
+    B = 179
+    }
+  Custom41
+    {
+    R = 179
+    G = 226
+    B = 205
+    }
+  Custom42
+    {
+    R = 253
+    G = 205
+    B = 172
+    }
+  Custom43
+    {
+    R = 203
+    G = 213
+    B = 232
+    }
+  Custom44
+    {
+    R = 244
+    G = 202
+    B = 228
+    }
+  Custom45
+    {
+    R = 230
+    G = 245
+    B = 201
+    }
+  Custom46
+    {
+    R = 255
+    G = 242
+    B = 174
+    }
+  Custom47
+    {
+    R = 241
+    G = 226
+    B = 204
+    }
+  Custom48
+    {
+    R = 204
+    G = 204
+    B = 204
+    }
+  Custom49
+    {
+    R = 17
+    G = 17
+    B = 17
+    }
+  Custom50
+    {
+    R = 0
+    G = 255
+    }
+  Custom51
+    {
+    R = 255
+    G = 177
+    B = 78
+    }
+  Custom52
+    {
+    R = 250
+    G = 135
+    B = 117
+    }
+  Custom53
+    {
+    R = 234
+    G = 95
+    B = 148
+    }
+  Custom54
+    {
+    R = 205
+    G = 52
+    B = 181
+    }
+  Custom55
+    {
+    R = 157
+    G = 2
+    B = 215
+    }
+  Custom56
+    {
+    R = 0
+    G = 0
+    B = 255
+    }
+$!GlobalPaper 
+  PaperSizeInfo
+    {
+    A4
+      {
+      Width = 8.2677
+      Height = 11.693
+      LeftHardClipOffset = 0.125
+      RightHardClipOffset = 0.125
+      TopHardClipOffset = 0.125
+      BottomHardClipOffset = 0.125
+      }
+    }
+$!Page 
+  Name = 'Untitled'
+  PaperAttributes
+    {
+    BackgroundColor = White
+    IsTransparent = No
+    OrientPortrait = No
+    ShowGrid = Yes
+    ShowRuler = No
+    ShowPaper = No
+    PaperSize = A4
+    RulerSpacing = OneInch
+    PaperGridSpacing = HalfInch
+    RegionInWorkArea
+      {
+      X1 = -0.05
+      Y1 = -0.05
+      X2 = 11.74
+      Y2 = 8.318
+      }
+    }
+### Frame Number 1 ###
+$!ReadDataSet  '|LFDSFN1|'
+  InitialPlotType = XYLine
+  IncludeText = No
+  IncludeGeom = No
+  ResetStyle = No
+  AssignStrandIDs = Yes
+  VarLoadMode = ByName
+  VarNameList = '|LFDSVL1|'
+$!RemoveVar |LFDSVL1|
+$!RemoveVar |LFDSFN1|
+$!AlterData 
+  Equation = 'V14=2.0'
+$!FrameLayout 
+  ShowBorder = No
+  ShowHeader = No
+  HeaderColor = Red
+  XYPos
+    {
+    X = -1.1915
+    Y = 0.32885
+    }
+  Width = 13.922
+  Height = 7
+$!ThreeDAxis 
+  AspectRatioLimit = 25
+  BoxAspectRatioLimit = 25
+$!PlotType  = XYLine
+$!FrameName  = 'Frame 001'
+$!GlobalTime 
+  SolutionTime = 0
+$!DeleteLineMaps 
+$!ActiveLineMaps  =  [1-2,5]
+$!GlobalLinePlot 
+  DataLabels
+    {
+    DistanceSkip = 5
+    }
+  Legend
+    {
+    Show = Yes
+    Box
+      {
+      BoxType = Filled
+      }
+    XYPos
+      {
+      X = 98.24
+      Y = 96.448
+      }
+    }
+$!LineMap  [1]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 2
+    }
+  Lines
+    {
+    Color = Custom27
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Red
+    FillColor = Red
+    }
+  BarCharts
+    {
+    Color = Red
+    FillColor = Red
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Red
+    }
+$!LineMap  [2]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 5
+    }
+  Lines
+    {
+    Color = Custom28
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Red
+    FillColor = Red
+    }
+  BarCharts
+    {
+    Color = Red
+    FillColor = Red
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Red
+    }
+$!LineMap  [3]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 8
+    }
+  Lines
+    {
+    Color = Custom28
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Custom1
+    FillColor = Custom1
+    }
+  BarCharts
+    {
+    Color = Custom1
+    FillColor = Custom1
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Custom1
+    }
+$!LineMap  [4]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 11
+    }
+  Lines
+    {
+    Color = Custom27
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Custom1
+    FillColor = Custom1
+    }
+  BarCharts
+    {
+    Color = Custom1
+    FillColor = Custom1
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Custom1
+    }
+$!LineMap  [5]
+  Name = 'Obs x'
+  Assign
+    {
+    Zone = 4
+    XAxisVar = 1
+    YAxisVar = 2
+    }
+  Lines
+    {
+    Show = No
+    Color = Custom27
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    SymbolShape
+      {
+      GeomShape = Circle
+      }
+    Color = Black
+    FillMode = UseSpecificColor
+    FillColor = Black
+    Size = 0.75
+    }
+  BarCharts
+    {
+    Color = Custom1
+    FillColor = Custom1
+    }
+  ErrorBars
+    {
+    Var = 14
+    Show = Yes
+    Color = Custom1
+    Size = 1
+    }
+$!LineMap  [6]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 3
+    }
+  Lines
+    {
+    Color = Custom27
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Green
+    FillColor = Green
+    }
+  BarCharts
+    {
+    Color = Green
+    FillColor = Green
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Green
+    }
+$!LineMap  [7]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 6
+    }
+  Lines
+    {
+    Color = Custom28
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Green
+    FillColor = Green
+    }
+  BarCharts
+    {
+    Color = Green
+    FillColor = Green
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Green
+    }
+$!LineMap  [8]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 9
+    }
+  Lines
+    {
+    Color = Custom28
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Custom3
+    FillColor = Custom3
+    }
+  BarCharts
+    {
+    Color = Custom3
+    FillColor = Custom3
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Custom3
+    }
+$!LineMap  [9]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 12
+    }
+  Lines
+    {
+    Color = Custom27
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Custom3
+    FillColor = Custom3
+    }
+  BarCharts
+    {
+    Color = Custom3
+    FillColor = Custom3
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Custom3
+    }
+$!LineMap  [10]
+  Name = 'Obs y'
+  Assign
+    {
+    Zone = 2
+    XAxisVar = 1
+    YAxisVar = 3
+    }
+  Lines
+    {
+    Show = No
+    Color = Custom27
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    SymbolShape
+      {
+      GeomShape = Circle
+      }
+    Color = Black
+    FillMode = UseSpecificColor
+    FillColor = Black
+    Size = 0.75
+    }
+  BarCharts
+    {
+    Color = Custom3
+    FillColor = Custom3
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Custom1
+    Size = 1
+    }
+$!LineMap  [11]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 4
+    }
+  Lines
+    {
+    Color = Custom27
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Blue
+    FillColor = Blue
+    }
+  BarCharts
+    {
+    Color = Blue
+    FillColor = Blue
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Blue
+    }
+$!LineMap  [12]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 7
+    }
+  Lines
+    {
+    Color = Custom28
+    LineThickness = 0.4
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Blue
+    FillColor = Blue
+    }
+  BarCharts
+    {
+    Color = Blue
+    FillColor = Blue
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Blue
+    }
+$!LineMap  [13]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 10
+    }
+  Lines
+    {
+    Color = Custom28
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Purple
+    FillColor = Purple
+    }
+  BarCharts
+    {
+    Color = Purple
+    FillColor = Purple
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Purple
+    }
+$!LineMap  [14]
+  Name = '&DV&'
+  Assign
+    {
+    Zone = 1
+    XAxisVar = 1
+    YAxisVar = 13
+    }
+  Lines
+    {
+    Color = Custom27
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    Show = No
+    Color = Purple
+    FillColor = Purple
+    }
+  BarCharts
+    {
+    Color = Purple
+    FillColor = Purple
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Purple
+    }
+$!LineMap  [15]
+  Name = 'Obs z'
+  Assign
+    {
+    Zone = 2
+    XAxisVar = 1
+    YAxisVar = 4
+    }
+  Lines
+    {
+    Show = No
+    Color = Custom27
+    }
+  Curves
+    {
+    CurveType = Spline
+    NumPts = 500
+    }
+  Symbols
+    {
+    SymbolShape
+      {
+      GeomShape = Circle
+      }
+    Color = Black
+    FillMode = UseSpecificColor
+    FillColor = Black
+    Size = 0.75
+    }
+  BarCharts
+    {
+    Color = Purple
+    FillColor = Purple
+    }
+  ErrorBars
+    {
+    Var = 2
+    Color = Custom1
+    Size = 1
+    }
+$!XYLineAxis 
+  DepXToYRatio = 1
+  GridArea
+    {
+    DrawBorder = Yes
+    }
+  ViewportPosition
+    {
+    X1 = 6.5975
+    Y1 = 10.674
+    X2 = 98.278
+    Y2 = 96.674
+    }
+  ViewportTopSnapTarget = 96.6742289968
+$!XYLineAxis 
+  XDetail 1
+    {
+    RangeMin = 0
+    RangeMax = 40.003999999999997783
+    GRSpacing = 5
+    TickLabel
+      {
+      TextShape
+        {
+        Height = 4
+        }
+      }
+    Title
+      {
+      TitleMode = UseText
+      Text = 'Time (t)'
+      TextShape
+        {
+        Height = 4.6
+        }
+      Offset = 5
+      }
+    }
+$!XYLineAxis 
+  YDetail 1
+    {
+    RangeMin = -17.979999542236328125
+    RangeMax = 17.303527236938474942
+    GRSpacing = 5
+    TickLabel
+      {
+      TextShape
+        {
+        Height = 4
+        }
+      }
+    Title
+      {
+      TitleMode = UseText
+      Text = 'Value of x(t)'
+      TextShape
+        {
+        Height = 4.6
+        }
+      Offset = 4
+      }
+    }
+$!LinePlotLayers 
+  ShowSymbols = Yes
+  ShowErrorBars = Yes
+$!FrameControl ActivateByNumber
+  Frame = 1
+$!SetStyleBase Config
