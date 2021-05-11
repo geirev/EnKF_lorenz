@@ -4,47 +4,44 @@ program main
    use m_ensvar
    use m_random
    use m_lorenz
-   use m_obs
+   use m_measurements
    use m_readinfile
+   use m_set_random_seed2
 
    implicit none
    type(variances) vars
-   character(len=8) fname
-
-   integer :: lag=0
-   real A(3,ndim,nrsamp)
-   real ave(3,ndim)          ! predicted state variable
-   real var(3,ndim)          ! predicted state variable
-   real ref(3,ndim)          ! Reference solution
-   real fg(3)                ! first guess initial condition
-   real d(3,nrmes)           ! vector of measurements
-  
-   integer ih(nrmes)      ! Measurement pointers
-   real v(nrmes,nrmes)    ! Measurement error covariance matrix
-   real dt,tfin
    integer na,nb,nc
-   real deltaobs
    integer i,j,m
-   integer mode
 
-   real Renkf(nrobs,nrobs),Denkf(nrobs,nrsamp),Eenkf(nrobs,nrsamp),Senkf(nrobs,nrsamp),aveenkf(3),innovenkf(3)
-   real Res(nrtobs,nrtobs),Des(nrtobs,nrsamp),Ees(nrtobs,nrsamp),Ses(nrtobs,nrsamp),avees(nrtobs),innoves(nrtobs)
+   real, allocatable :: A(:,:,:)    ! Stores the whole ensemble as function of time
+   real, allocatable :: obs(:,:)    ! vector of measurements as function of time
+   real, allocatable :: ave(:,:)    ! Ensemble average
+   real, allocatable :: var(:,:)    ! Ensemble variance
+   real, allocatable :: ref(:,:)    ! Reference solution
+   real, allocatable :: fg(:)       ! first guess initial condition
+   integer, allocatable :: ih(:)    ! Measurement time-index pointer
 
+   real, allocatable :: R(:,:)      ! Measurement error covariance matrix
+   real, allocatable :: D(:,:)      ! Perturbed measurement innovations D=obs+E-HA
+   real, allocatable :: E(:,:)      ! Measurement perturbations
+   real, allocatable :: S(:,:)      ! Predicted measurement anomalies
+   real, allocatable :: aves(:)     ! work array for average of S
+   real, allocatable :: innov(:)    ! mean of innovations D
+
+   call set_random_seed2
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Reading initial parameters
-   call readinfile(tfin,vars,dt,mode)
+   call readinfile(vars,dt)
+
+   allocate(A(neq,ndim,nrsamp), obs(nrobs,nrmes), ave(neq,ndim), var(neq,ndim), ref(neq,ndim), fg(neq), ih(0:nrmes))
    select case (mode)
-   case(0) 
-      fname='Ensemble'
-   case(1) 
-      fname='EnKF'
-      lag=0
-   case(2) 
-      fname='ES'
-   case(3) 
-      fname='EnKS'
-      lag=75
+   case(1,3)
+      allocate(R(nrobs,nrobs),D(nrobs,nrsamp),E(nrobs,nrsamp),S(nrobs,nrsamp),aves(nrobs),innov(nrobs) )
+   case(2)
+      allocate(R(nrtobs,nrtobs), D(nrtobs,nrsamp), E(nrtobs,nrsamp), S(nrtobs,nrsamp), aves(nrtobs), innov(nrtobs))
    end select
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Simulating reference case
    ref(1,1)= 1.508870
    ref(2,1)=-1.531271
@@ -53,84 +50,93 @@ program main
    nb=ndim
    call lorenz(na,nb,dt,ref,0.0)
 
-! Defining initial cond for central forecast
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Defining first guess initial cond
    call random(fg,3)
    fg(:)=sqrt(vars%ini)*fg(:)+ref(:,1)
 
-
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 ! Generating initial ensemble
    do j=1,nrsamp
       call random(A(1,1,j),3)
       A(:,1,j)=fg(:)+sqrt(vars%ini)*A(:,1,j)
    enddo
 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Generating measurements from reference solution
+   call measurements(ref,obs,ih,dt,vars,obsdt) 
 
-! Generating measurements
-   call obs(ref,d,ih,v,dt,vars,deltaobs) 
 
-
-! Time stepping between measurement times
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! Time stepping over measurement times
    do m=1,nrmes
 
 ! Ensemble integration
-      na=nint(deltaobs*float(m-1)/dt+1.0)
-      nb=nint(deltaobs*float(m)/dt+1.0)
+      na=ih(m-1)
+      nb=ih(m)
       print '(2(a,i4))','integrating over indexes: na=',na,' nb=',nb
       do j=1,nrsamp
-         call lorenz(na,nb,dt,A(1,1,j),vars%dyn) 
+         call lorenz(na,nb,dt,A(:,:,j),vars%dyn) 
       enddo
+      print *,'Lorenz ensemble done'
 
 ! EnKF (lag=0) or EnKS update with given lag
       if ((mode == 1).or.(mode == 3)) then 
-         call random(Eenkf,3*nrsamp)
-         Eenkf=sqrt(vars%mes)*Eenkf
+         call random(E,3*nrsamp)
+         E=sqrt(vars%mes)*E
          do j=1,nrsamp
-            Senkf(:,j)=A(:,nb,j)
-            Denkf(:,j)=d(:,m)+Eenkf(:,j)-Senkf(:,j)
+            S(:,j)=A(:,nb,j)
+            D(:,j)=obs(:,m)+E(:,j)-S(:,j)
          enddo
-         call ensmean(Senkf,aveenkf,3,nrsamp)
+         call ensmean(S,aves,3,nrsamp)
          do j=1,nrsamp
-            Senkf(:,j)=Senkf(:,j)-aveenkf(:)
+            S(:,j)=S(:,j)-aves(:)
          enddo
 
-         call ensmean(Denkf,innovenkf,3,nrsamp)
-         Renkf=0.0
+         call ensmean(D,innov,3,nrsamp)
+         R=0.0
+
 
          na=max(1,nb-lag)
          nc=nb-na+1
-         call analysis(A(:,na:nb,:),Renkf,Eenkf,Senkf,Denkf,innovenkf,3*nc,nrsamp,3,.true.,0.99,13,.false.,.false.,.true.,0,1.0,1)
+         print '(3(a,i4))','analysis over indexes: ',na,'-',nb,', nc=',nc
+         call analysis(A(:,na:nb,:),R,E,S,D,innov,neq*nc,nrsamp,nrobs,&
+                       &.true.,0.99,13,.false.,.false.,.true.,0,1.0,1)
       endif
 
    enddo
 
    if (mode == 2) then   ! Ensemble Smoother analysis
 ! Random measurement perturbations
-         call random(Ees,nrtobs*nrsamp)
-         Ees=sqrt(vars%mes)*Ees
+         call random(E,nrtobs*nrsamp)
+         E=sqrt(vars%mes)*E
+
 ! Assemble measurments into one vector
-         do i=1,nrmes
-            avees((i-1)*nrobs+1:i*nrobs)=d(1:nrobs,i)
-         enddo
-! Observed ensemble prediction in Ses and ensemble of innovations in Des
-         do j=1,nrsamp
-            do i=1,nrmes
-               nb=nint(deltaobs*real(i)/dt+1.0)
-               Ses((i-1)*3+1:i*3,j)=A(:,nb,j)
-            enddo
-            Des(:,j)=avees(:)+Ees(:,j)-Ses(:,j)
-         enddo
-! Observed ensemble anomalies
-         call ensmean(Ses,avees,nrtobs,nrsamp)
-         do j=1,nrsamp
-            ses(:,j)=ses(:,j)-avees(:)
-         enddo
-! Measurement error covariance
-         Res=0.0
-         do i=1,nrmes
-            Res(i,i)=vars%mes
+         do m=1,nrmes
+            aves((m-1)*nrobs+1:m*nrobs)=obs(1:nrobs,m)
          enddo
 
-         call analysis(A,Res,Ees,Ses,Des,innoves,3*ndim,nrsamp,nrtobs,.true.,0.9999,13,.false.,.false.,.true.,0,1.0,1)
+! Observed ensemble prediction in Ses and ensemble of innovations in Des
+         do j=1,nrsamp
+            do m=1,nrmes
+               S((m-1)*nrobs+1:m*nrobs,j)=A(:,ih(m),j)
+            enddo
+            D(:,j)=aves(:)+E(:,j)-S(:,j)
+         enddo
+
+! Observed ensemble anomalies
+         call ensmean(S,aves,nrtobs,nrsamp)
+         do j=1,nrsamp
+            S(:,j)=S(:,j)-aves(:)
+         enddo
+
+! Measurement error covariance
+         R=0.0
+         do i=1,nrtobs
+            R(i,i)=vars%mes
+         enddo
+
+         call analysis(A,R,E,S,D,innov,neq*ndim,nrsamp,nrtobs,.true.,0.999,13,.false.,.false.,.true.,0,1.0,1)
    endif
 
 
@@ -144,14 +150,14 @@ program main
                                         &"Var x" "Var y" "Var z" "Err x" "Err y" "Err z"'
       write(10,*)'ZONE T="',trim(fname),'"  F=POINT, I=',ndim,', J=1, K=1'
       do i=1,ndim
-         write(10,'(13g12.4)')float(i-1)*dt,ref(1:3,i),&
-                                            ave(1:3,i),&
-                                            sqrt(var(1:3,i)),&
-                                            sqrt((ave(1:3,i)-ref(1:3,i))**2)
+         write(10,'(13g12.4)')float(i-1)*dt,ref(1:neq,i),&
+                                            ave(1:neq,i),&
+                                            sqrt(var(1:neq,i)),&
+                                            sqrt((ave(1:neq,i)-ref(1:neq,i))**2)
       enddo
       write(10,*)'ZONE T="Measurements" F=POINT, I=',nrmes,', J=1, K=1'
       do i=1,nrmes
-         write(10,'(13g12.4)')float(i)*deltaobs, d(1:3,i), d(1:3,i), d(1:3,i), d(1:3,i) 
+         write(10,'(13g12.4)')float(i)*obsdt, obs(1:nrobs,i), obs(1:nrobs,i), obs(1:nrobs,i), obs(1:nrobs,i) 
       enddo
    close(10)
 

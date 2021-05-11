@@ -7,11 +7,10 @@ subroutine lorenz(na,nb,dt,sol,modvar)
    use m_fex
    implicit none
 
-   real, intent(in)     ::  dt          ! Time step
-   integer, intent(in)  ::  na          ! Start time
-   integer, intent(in)  ::  nb          ! end time
-   real, intent(in)     ::  modvar      ! model error variance
-   integer, parameter :: neq=3
+   real, intent(in)     :: dt          ! Time step
+   integer, intent(in)  :: na          ! Start time
+   integer, intent(in)  :: nb          ! end time
+   real, intent(in)     :: modvar      ! model error variance
    real, intent(inout)  :: sol(neq,ndim) ! Solution vector
 
    integer, parameter :: lrw=100
@@ -36,7 +35,7 @@ subroutine lorenz(na,nb,dt,sol,modvar)
    iopt=0           ! no optional inputs
 
    y(:)=sol(:,na)
-   if (nb > ndim) print *,'nb>ndim',nb,ndim 
+   if (nb > ndim) stop 'nb>ndim'
    do iout=na+1,nb
       t1=real(iout-2)*dt   
       t2=real(iout-1)*dt   

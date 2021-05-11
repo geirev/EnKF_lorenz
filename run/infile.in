@@ -1,5 +1,9 @@
+2000             ! Ensemble size (nrsamp)
+80               ! Number of meaurement times (nrmes)
+801              ! Number of gridpoints in time (ndim)
 40.0             ! Final time
+3                ! mode: Ensemble=0, EnKF=1, ES=2, EnKSL=3
+75               ! lag for EnKSL 
 1.0              ! Model error variance
 2.0              ! Initial error variance
 2.0              ! Data error variance
-3                ! mode: Ensemble=0, EnKF=1, ES=2, EnKSL=3

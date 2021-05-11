@@ -1,5 +1,5 @@
 #!MC 1410
-$!VarSet |LFDSFN1| = '"EnKF.dat" "ES.dat" "EnKS.dat" "EnKSL.dat"'
+$!VarSet |LFDSFN1| = '"EnKF.dat" "ES.dat" "EnKS.dat"'
 $!VarSet |LFDSVL1| = '"time" "Ref x" "Ref y" "Ref z" "Ave x" "Ave y" "Ave z" "Var x" "Var y" "Var z" "Err x" "Err y" "Err z"'
 $!SetStyleBase Factory
 $!BasicColor 

@@ -1,8 +1,9 @@
 MODULES = \
 	m_fex.F90\
 	m_lorenz.F90\
-	m_obs.F90\
+	m_measurements.F90\
 	mod_dimensions.F90\
+	mod_lorenzpar.F90\
 	m_readinfile.F90
 
 F90FILES = \

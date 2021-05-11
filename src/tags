@@ -4,72 +4,47 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-A	main.F90	/^   real A(/;"	v	program:main
-AA	main.F90	/^   real AA(/;"	v	program:main
-C	main.F90	/^   real C(/;"	v	program:main
-C_lag	main.F90	/^   real C_lag(/;"	v	program:main
-Reps	main.F90	/^   real Reps(/;"	v	program:main
-Reps_lag	main.F90	/^   real Reps_lag(/;"	v	program:main
-S	main.F90	/^   real S(/;"	v	program:main
-S_lag	main.F90	/^   real S_lag(/;"	v	program:main
-ave	main.F90	/^   real ave(/;"	v	program:main
-b	mod_dimensions.F90	/^   real, parameter   ::  b=/;"	v	module:mod_dimensions
-bcoeff	main.F90	/^   real bcoeff(/;"	v	program:main
-bcoeff_lag	main.F90	/^   real bcoeff_lag(/;"	v	program:main
-d	main.F90	/^   real d(/;"	v	program:main
-deltaobs	main.F90	/^   real deltaobs$/;"	v	program:main
-dt	main.F90	/^   real dt,/;"	v	program:main
+A	main.F90	/^   real, allocatable :: A(/;"	v	program:main
+ave	main.F90	/^   real, allocatable :: ave(/;"	v	program:main
+b	mod_lorenzpar.F90	/^   real, parameter   ::  b=/;"	v	module:mod_lorenzpar
+dt	main.F90	/^   real dt /;"	v	program:main
 dyn	mod_dimensions.F90	/^      real dyn$/;"	k	type:variances
-eksRfact	m_eksRfact.F90	/^subroutine eksRfact(/;"	s	module:m_eksRfact
-eksRfact_lag	m_eksRfact_lag.F90	/^subroutine eksRfact_lag(/;"	s	module:m_eksRfact_lag
-eksreps	m_eksreps.F90	/^subroutine eksreps(/;"	s	module:m_eksreps
-eksreps_lag	m_eksreps_lag.F90	/^subroutine eksreps_lag(/;"	s	module:m_eksreps_lag
-eksscalc	m_eksscalc.F90	/^subroutine eksscalc(/;"	s	module:m_eksscalc
-eksscalc_lag	m_eksscalc_lag.F90	/^subroutine eksscalc_lag(/;"	s	module:m_eksscalc_lag
 fex	m_fex.F90	/^subroutine fex(/;"	s	module:m_fex
-fg	main.F90	/^   real fg(/;"	v	program:main
-fname	main.F90	/^   character(len=5) fname$/;"	v	program:main
+fg	main.F90	/^   real, allocatable :: fg(/;"	v	program:main
+fname	m_readinfile.F90	/^   character(len=8) fname /;"	v	module:m_readinfile
 i	main.F90	/^   in/;"	v	program:main
-ih	main.F90	/^   integer ih(/;"	v	program:main
+ih	main.F90	/^   integer, allocatable :: ih(/;"	v	program:main
 ini	mod_dimensions.F90	/^      real ini$/;"	k	type:variances
 j	main.F90	/^   integer i,j,/;"	v	program:main
-kfilt	m_kfilt.F90	/^subroutine kfilt(/;"	s	module:m_kfilt
-lag	main.F90	/^   integer, parameter :: lag=/;"	v	program:main
+lag	m_readinfile.F90	/^   integer lag /;"	v	module:m_readinfile
 lorenz	m_lorenz.F90	/^subroutine lorenz(/;"	s	module:m_lorenz
-m	main.F90	/^   integer i,j,m,/;"	v	program:main
-m_eksRfact	m_eksRfact.F90	/^module m_eksRfact$/;"	m
-m_eksRfact_lag	m_eksRfact_lag.F90	/^module m_eksRfact_lag$/;"	m
-m_eksreps	m_eksreps.F90	/^module m_eksreps$/;"	m
-m_eksreps_lag	m_eksreps_lag.F90	/^module m_eksreps_lag$/;"	m
-m_eksscalc	m_eksscalc.F90	/^module m_eksscalc$/;"	m
-m_eksscalc_lag	m_eksscalc_lag.F90	/^module m_eksscalc_lag$/;"	m
+m	main.F90	/^   integer i,j,m$/;"	v	program:main
 m_fex	m_fex.F90	/^module m_fex$/;"	m
-m_kfilt	m_kfilt.F90	/^module m_kfilt$/;"	m
 m_lorenz	m_lorenz.F90	/^module m_lorenz$/;"	m
-m_obs	m_obs.F90	/^module m_obs$/;"	m
+m_measurements	m_measurements.F90	/^module m_measurements$/;"	m
 m_readinfile	m_readinfile.F90	/^module m_readinfile$/;"	m
 main	main.F90	/^program main /;"	p
+measurements	m_measurements.F90	/^subroutine measurements(/;"	s	module:m_measurements
 mes	mod_dimensions.F90	/^      real mes$/;"	k	type:variances
-mm	main.F90	/^   integer i,j,m,mm$/;"	v	program:main
 mod_dimensions	mod_dimensions.F90	/^module mod_dimensions$/;"	m
-mode	main.F90	/^   integer mode$/;"	v	program:main
+mod_lorenzpar	mod_lorenzpar.F90	/^module mod_lorenzpar$/;"	m
+mode	m_readinfile.F90	/^   integer mode /;"	v	module:m_readinfile
 na	main.F90	/^   integer na,/;"	v	program:main
-nb	main.F90	/^   integer na,nb$/;"	v	program:main
-ndim	mod_dimensions.F90	/^   integer, parameter :: ndim=/;"	v	module:mod_dimensions
-nfft	mod_dimensions.F90	/^   integer, parameter :: nfft=/;"	v	module:mod_dimensions
-nrmes	mod_dimensions.F90	/^   integer, parameter :: nrmes=/;"	v	module:mod_dimensions
+nb	main.F90	/^   integer na,nb,/;"	v	program:main
+nc	main.F90	/^   integer na,nb,nc$/;"	v	program:main
+ndim	mod_dimensions.F90	/^   integer ndim /;"	v	module:mod_dimensions
+neq	mod_dimensions.F90	/^   integer, parameter :: neq=/;"	v	module:mod_dimensions
+nrmes	mod_dimensions.F90	/^   integer nrmes /;"	v	module:mod_dimensions
 nrobs	mod_dimensions.F90	/^   integer, parameter :: nrobs=/;"	v	module:mod_dimensions
-nrsamp	mod_dimensions.F90	/^   integer, parameter :: nrsamp=/;"	v	module:mod_dimensions
-nrtobs	mod_dimensions.F90	/^   integer, parameter :: nrtobs=/;"	v	module:mod_dimensions
-nsing	main.F90	/^   integer nsing$/;"	v	program:main
-obs	m_obs.F90	/^subroutine obs(/;"	s	module:m_obs
-pi	mod_dimensions.F90	/^   real, parameter   ::  pi=/;"	v	module:mod_dimensions
-r	mod_dimensions.F90	/^   re/;"	v	module:mod_dimensions
+nrsamp	mod_dimensions.F90	/^   integer nrsamp /;"	v	module:mod_dimensions
+nrtobs	mod_dimensions.F90	/^   integer nrtobs /;"	v	module:mod_dimensions
+obs	main.F90	/^   real, allocatable :: obs(/;"	v	program:main
+obsdt	m_readinfile.F90	/^   real obsdt /;"	v	module:m_readinfile
+obsdt	main.F90	/^   real obsdt /;"	v	program:main
+r	mod_lorenzpar.F90	/^   re/;"	v	module:mod_lorenzpar
 readinfile	m_readinfile.F90	/^subroutine readinfile(/;"	s	module:m_readinfile
-ref	main.F90	/^   real ref(/;"	v	program:main
-sigma	mod_dimensions.F90	/^   real, parameter   ::  sigma=/;"	v	module:mod_dimensions
-tfin	main.F90	/^   real dt,tfin$/;"	v	program:main
-v	main.F90	/^   real v(/;"	v	program:main
-var	main.F90	/^   real var(/;"	v	program:main
+ref	main.F90	/^   real, allocatable :: ref(/;"	v	program:main
+sigma	mod_lorenzpar.F90	/^   real, parameter   ::  sigma=/;"	v	module:mod_lorenzpar
+var	main.F90	/^   real, allocatable :: var(/;"	v	program:main
 variances	mod_dimensions.F90	/^   type variances$/;"	t	module:mod_dimensions
 vars	main.F90	/^   type(variances) vars$/;"	v	program:main

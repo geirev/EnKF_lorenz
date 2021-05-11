@@ -1,6 +1,6 @@
 # EnKF_lorenz
 
-EnKF, EnKS, and ES implementation with lorenz'63 equations as used in Evensen (1997, 2000, 2009).
+EnKF, EnKS, and ES implementation with lorenz'63 equations as used in Evensen (1997, 2000, 2009ab).
 The code allows for testing various EnKF schemes with highly nonlinear dynamics.
 
 Evensen, G. Advanced data assimilation for strongly nonlinear dynamics.
@@ -10,6 +10,13 @@ Mon. Weather Rev., 125: 1342-1354, 1997.
 Evensen, G. and P. J. van Leeuwen.  An ensemble Kalman smoother for nonlinear dynamics.
 Mon. Weather Rev., 128:1852-1867, 2000. 
 <a href="https://doi.org/10.1175/1520-0493(2000)128<1852:AEKSFN>2.0.CO;2">doi:10.1175/1520-0493(2000)128<1852:AEKSFN>2.0.CO;2</a>
+
+Evensen, G. The ensemble Kalman filter for combined state and parameter estimation.
+IEEE Control Systems Magazine, 29(3):83–104, 2009a. doi:
+<a href="https://doi.org/10.1109/MCS.2009.932223">doi:10.1109/MCS.2009.932223</a>
+
+Evensen, G. Data Assimilation: The Ensemble Kalman Filter. Springer, 2nd edition, 2009b.
+<a href="https://doi.org/10.1007/978-3-642-03711-5">doi:10.1007/978-3-642-03711-5</a>
 
 
 <p align="center">
@@ -29,6 +36,7 @@ Create a directory to clone the three following repositories:
 
 ```bash
 git clone git@github.com:geirev/EnKF_lorenz.git
+git clone git@github.com:geirev/EnKF_sampling.git
 git clone git@github.com:geirev/EnKF_analysis.git
 ```
 
@@ -37,6 +45,7 @@ After cloning, the directory structure should look like:
 ```bash
 .
 ├── EnKF_analysis
+└── EnKF_sampling
 └── EnKF_lorenz
 ```
 
@@ -61,6 +70,13 @@ git remote add upstream https://github.com/geirev/EnKF_analysis
 #or, if you have set up git-ssh
 #git remote add upstream git://github.com:geirev/EnKF_analysis
 popd
+
+git clone git@github.com:<userid>/EnKF_sampling.git
+pushd EnKF_sampling
+git remote add upstream https://github.com/geirev/EnKF_sampling
+#or, if you have set up git-ssh
+#git remote add upstream git://github.com:geirev/EnKF_sampling
+popd
 ```
 
 If you are new to Git, read the section <a href="https://github.com/geirev/EnKF_seir#git-instructions">Git instructions</a>
@@ -83,8 +99,22 @@ brew install gcc openblas lapack
 **Note:** You must have [Homebrew](https://brew.sh/) installed to install
 packages using `brew`
 
+## 3. Compile the `EnKF_sampling` library
 
-## 3. Compile the `EnKF_analysis` library
+Navigate to the `lib` folder of the `EnKF_sampling` repository:
+
+```bash
+cd EnKF_sampling/lib
+```
+
+then compile and place all the `.o` files as well as `libanalysis.a` into
+the `build` directory of the `EnKR_seir` repository using:
+
+```bash
+make BUILD=../../EnKF_seir/build
+```
+
+## 4. Compile the `EnKF_analysis` library
 
 Navigate to the `lib` folder of the `EnKF_analysis` repository:
 

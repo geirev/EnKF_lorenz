@@ -1,7 +1,7 @@
 module m_fex
 contains
 subroutine fex(neq,t,y,ydot)
-   use mod_dimensions
+   use mod_lorenzpar
    implicit none
    integer neq
    real y(neq),ydot(neq),t
