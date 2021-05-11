@@ -1,0 +1,5 @@
+40.0             ! Final time
+1.0              ! Model error variance
+2.0              ! Initial error variance
+2.0              ! Data error variance
+3                ! mode: Ensemble=0, EnKF=1, ES=2, EnKSL=3
