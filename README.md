@@ -108,10 +108,10 @@ cd EnKF_sampling/lib
 ```
 
 then compile and place all the `.o` files as well as `libanalysis.a` into
-the `build` directory of the `EnKR_seir` repository using:
+the `build` directory of the `EnKF_lorenz` repository using:
 
 ```bash
-make BUILD=../../EnKF_seir/build
+make BUILD=../../EnKF_lorenz/build
 ```
 
 ## 4. Compile the `EnKF_analysis` library

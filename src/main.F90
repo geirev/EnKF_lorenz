@@ -8,6 +8,7 @@ program main
    use m_readinfile
    use m_set_random_seed2
 
+
    implicit none
    type(variances) vars
    integer na,nb,nc
@@ -147,7 +148,7 @@ program main
    open(10,file=trim(fname)//'.dat')
       write(10,'(a)')'TITLE = "Lorenz output"'
       write(10,'(a)')'VARIABLES = "time" "Ref x" "Ref y" "Ref z" "Ave x" "Ave y" "Ave z" &
-                                        &"Var x" "Var y" "Var z" "Err x" "Err y" "Err z"'
+                                        &"Std x" "Std y" "Std z" "Err x" "Err y" "Err z"'
       write(10,*)'ZONE T="',trim(fname),'"  F=POINT, I=',ndim,', J=1, K=1'
       do i=1,ndim
          write(10,'(13g12.4)')float(i-1)*dt,ref(1:neq,i),&
